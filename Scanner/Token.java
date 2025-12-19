@@ -1,6 +1,6 @@
 package Scanner;
 
-public class oken {
+public class Token {
     TipoToken tipo;
     String lexema;
 
