@@ -5,6 +5,6 @@ public enum TipoToken {
     IDENTIFICADOR,
     LITERAL_NUMERICO,
     OPERADOR,
-    DELIMITADOR
-
+    DELIMITADOR,
+    EOF
 }

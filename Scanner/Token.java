@@ -1,8 +1,8 @@
 package Scanner;
 
 public class Token {
-    TipoToken tipo;
-    String lexema;
+    public TipoToken tipo;
+    public String lexema;
 
     public Token(TipoToken tipo, String lexema) {
         this.tipo = tipo;
