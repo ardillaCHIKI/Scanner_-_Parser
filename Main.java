@@ -1,3 +1,4 @@
+import java.util.List;
 import java.util.Scanner;
 
 import Scanner.MiniScanner;
@@ -30,9 +31,19 @@ public class Main {
         }
 
         System.out.println("\n--- TOKENS GENERADOS POR EL SCANNER ---"); 
-        Token token; 
-        while ((token = scanner.getNextToken()).tipo != TipoToken.EOF) { 
-            System.out.println(token); } input.close();
+        List<Token> tokens = scanner.getAllTokens(); 
+        for (Token t : tokens) { 
+            if (t.tipo != TipoToken.EOF) { 
+                System.out.println(t); 
+            } 
+        } 
+        
+        input.close(); 
+    }
+
+        //Token token; 
+        //while ((token = scanner.getNextToken()).tipo != TipoToken.EOF) { 
+            //System.out.println(token); } input.close();
 
         //String[] lexemas = frase.trim().split("\\s+");
         //Token[] tokens = new Token[lexemas.length];
@@ -45,5 +56,5 @@ public class Main {
         //for (Token t : tokens) System.out.println(t);
 
         //input.close();
-    }
+    
 }
