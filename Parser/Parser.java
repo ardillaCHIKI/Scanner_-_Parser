@@ -3,11 +3,13 @@ package Parser;
 import Scanner.MiniScanner; 
 import Scanner.Token; 
 import Scanner.TipoToken;
+import Semantic.SemanticAnalyzer;
 
 public class Parser {
 
     private MiniScanner scanner; 
     private Token actual;
+    private SemanticAnalyzer sem = new SemanticAnalyzer();
 
     public Parser(MiniScanner scanner) { 
         this.scanner = scanner; 
