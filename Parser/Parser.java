@@ -27,6 +27,13 @@ public class Parser {
         avanzar(); 
     } 
 
+    public void parse() { 
+        while (actual != null && actual.tipo != TipoToken.EOF) { 
+            stmt(); 
+        } 
+        System.out.println("✔ Análisis sintáctico y semántico completado"); 
+    }
+
     public void stmt() { 
         // IDENTIFICADOR 
         if (actual.tipo == TipoToken.IDENTIFICADOR) { 
@@ -50,8 +57,4 @@ public class Parser {
             throw new RuntimeException("Error: sentencia inválida"); 
         } 
     } 
-    
-    public void parse() { 
-        stmt();
-    }
 }
