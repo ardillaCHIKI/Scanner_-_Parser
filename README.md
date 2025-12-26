@@ -1,147 +1,104 @@
 # Scanner & Parser
 
-Un analizador léxico y sintáctico simple para procesar y validar sentencias de programación básicas.
+Proyecto educativo en Java que implementa un analizador léxico (Scanner) y un analizador sintáctico (Parser) para validar sentencias de asignación simples.
 
-## Descripción General
+## Resumen
 
-Este proyecto implementa un **Scanner** (analizador léxico) y un **Parser** (analizador sintáctico) que trabajan juntos para:
+El proyecto tokeniza una entrada, clasifica tokens y verifica que la secuencia cumpla una gramática mínima (asignación de un identificador a un número seguida de `;`). Es ideal para aprender los componentes básicos de un compilador: lexer + parser.
 
-1. **Tokenizar** una cadena de entrada dividiéndola en tokens reconocibles
-2. **Clasificar** cada token según su tipo (palabra clave, identificador, número, operador, etc.)
-3. **Validar** que la estructura de la entrada cumple con las reglas gramaticales definidas
+## Estructura del proyecto
 
-## Estructura del Proyecto
+- `Parser/Parser.java`        — Analizador sintáctico
+- `Scanner/Main.java`        — Punto de entrada (contiene `main`)
+- `Scanner/MiniLexer.java`   — Clasifica lexemas
+- `Scanner/MiniScanner.java` — Tokenizador que usa el lexer
+- `Scanner/Token.java`       — Representación de un token
+- `Scanner/TipoToken.java`   — Enumeración de tipos de token
 
-```
-Scanner_-_Parser/
-├── Main.java              # Punto de entrada de la aplicación
-├── Parser/
-│   └── Parser.java        # Analizador sintáctico
-└── Scanner/
-    ├── MiniLexer.java     # Clasificador de tokens
-    ├── MiniScanner.java   # Tokenizador de entrada
-    ├── Token.java         # Estructura de datos para representar tokens
-    └── TipoToken.java     # Enumeración de tipos de token
-```
+## Requisitos
 
-## Componentes
+- JDK 11 o superior instalado
+- Variable `JAVA_HOME` y `javac` disponibles en la terminal
 
-### 1. Scanner (Análisis Léxico)
+## Compilar y ejecutar desde Eclipse
 
-#### `MiniScanner.java`
-Responsable de dividir la entrada en tokens individuales. Procesa la cadena de entrada y crea una lista de tokens usando el lexer.
+1. **Crear un nuevo proyecto Java**
+   - Abre Eclipse
+   - Selecciona `File` → `New` → `Java Project`
+   - Introduce un nombre (ej: `Scanner-Parser`)
+   - Haz clic en `Finish`
 
-**Métodos principales:**
-- `getNextToken()`: Devuelve el siguiente token de la lista
-- `getAllTokens()`: Devuelve todos los tokens generados
+2. **Importar los archivos**
+   - En el `Project Explorer`, haz clic derecho en la carpeta `src` del proyecto
+   - Selecciona `Import...` → `File System`
+   - Navega a la carpeta `Scanner_-_Parser` descargada
+   - Selecciona las carpetas `Scanner/` y `Parser/` y haz clic en `Finish`
+   - Eclipse reconocerá automáticamente los paquetes
 
-#### `MiniLexer.java`
-Clasifica cada palabra/símbolo según su tipo.
+3. **Compilar el proyecto**
+   - Eclipse compila automáticamente al guardar los archivos (si tienes `Build Automatically` activado)
+   - Si no está activado: haz clic derecho en el proyecto → `Build Project`
+   - Comprueba que no haya errores en la pestaña `Problems` (inferior)
+   - Los archivos compilados `.class` aparecerán en la carpeta `bin/`
 
-**Tipos de tokens reconocidos:**
-- `PALABRA_CLAVE`: `if`, `int`
-- `IDENTIFICADOR`: Nombres de variables (cualquier palabra no clasificada de otra forma)
-- `LITERAL_NUMERICO`: Números enteros (ej: `123`, `456`)
-- `OPERADOR`: `=`, `==`, `+`
-- `DELIMITADOR`: `;`, `(`, `)`
-- `EOF`: Fin de entrada
+4. **Ejecutar el proyecto**
+   - En el `Project Explorer`, haz clic derecho en `Scanner.Main`
+   - Selecciona `Run As` → `Java Application`
+   - El programa se ejecutará en la consola de Eclipse (pestaña `Console` en la parte inferior)
 
-#### `Token.java`
-Estructura simple que contiene:
-- `tipo`: El tipo de token (TipoToken)
-- `lexema`: La cadena original del token
+## Uso
 
-#### `TipoToken.java`
-Enumeración que define todos los tipos de token posibles.
+Al ejecutar, el programa pedirá una frase. Introduce una sentencia de asignación válida, por ejemplo:
 
-### 2. Parser (Análisis Sintáctico)
-
-#### `Parser.java`
-Valida que la secuencia de tokens cumple con la gramática definida.
-
-**Gramática soportada:**
-```
-<stmt> ::= <IDENTIFICADOR> "=" <LITERAL_NUMERICO> ";"
-```
-
-Es decir, acepta sentencias del tipo:
-```
-variable = 42 ;
-x = 100 ;
-result = 0 ;
-```
-
-**Métodos principales:**
-- `parse()`: Inicia el análisis sintáctico
-- `stmt()`: Valida una sentencia completa
-- `consumir(String)`: Verifica que el token actual sea el esperado y avanza
-
-### 3. Main.java
-
-Punto de entrada que:
-1. Solicita al usuario una sentencia en español
-2. La procesa con el Scanner para obtener tokens
-3. La valida con el Parser
-4. Muestra los tokens generados
-5. Genera mensajes de error si hay problemas de sintaxis
-
-## Cómo Usar
-
-### Requisitos
-
-- Tener instalado el JDK (Java Development Kit)
-- Asegurarse de que el comando `javac` esté disponible en la terminal
-como consigo los requisitos
-
-### Compilación
-```bash
-javac Main.java Parser/Parser.java Scanner/*.java
-```
-### Ejecución
-```bash
-java Main
-```
-
-El programa solicitará una entrada. Ingresa una sentencia válida como:
 ```
 miVariable = 42 ;
 ```
 
-## Ejemplos
+Salida esperada (ejemplo):
 
-### Entrada Válida
 ```
-➜ Introduce una frase:
-x = 100 ;
-
 --- EJECUTANDO PARSER ---
 Sentencia válida
 
 --- TOKENS GENERADOS POR EL SCANNER ---
-Token: <IDENTIFICADOR, "x">
+Token: <IDENTIFICADOR, "miVariable">
 Token: <OPERADOR, "=">
-Token: <LITERAL_NUMERICO, "100">
+Token: <LITERAL_NUMERICO, "42">
 Token: <DELIMITADOR, ";">
 ```
 
-### Entrada Inválida
+Si la entrada no cumple la gramática, se mostrará un mensaje de error indicando el problema.
+
+## Gramática soportada (simplificada)
+
 ```
-➜ Introduce una frase:
-x = abc ;
-
-Error de sintaxis: Error: se esperaba un número
+<stmt> ::= <IDENTIFICADOR> "=" <LITERAL_NUMERICO> ";"
 ```
 
-## Limitaciones Actuales
+## Limitaciones
 
-- Solo soporta asignaciones simples de variables a números
-- No reconoce identificadores complejos (ej: con guiones bajos)
-- No maneja comentarios
-- No soporta múltiples sentencias
-- Gramática muy restrictiva (no permite operaciones aritméticas complejas)
+- Soporta solo asignaciones simples identificador = número `;`
+- No maneja expresiones aritméticas, comentarios ni múltiples declaraciones
+- Reconocimiento de identificadores y números es básico
 
-## Tecnología
+## Contribuir
 
-- **Lenguaje**: Java
-- **Arquitectura**: Análisis léxico y sintáctico de dos fases
-- **Patrón**: Compilador simple con Scanner y Parser
+Si quieres mejorar el proyecto:
+
+1. Haz un fork y crea una rama para tu feature/bugfix
+2. Añade pruebas o ejemplos que demuestren el cambio
+3. Abre un pull request con descripción clara
+
+## Autor
+
+Proyecto creado como ejercicio educativo.
+
+---
+
+Si quieres, puedo:
+
+- Añadir instrucciones para ejecutar desde un IDE (Eclipse/IntelliJ)
+- Traducir el README al inglés
+- Añadir un ejemplo automatizado de prueba
+
+Dime qué prefieres y lo hago.
