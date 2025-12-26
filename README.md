@@ -87,11 +87,16 @@ Punto de entrada que:
 
 ## Cómo Usar
 
+### Requisitos
+
+- Tener instalado el JDK (Java Development Kit)
+- Asegurarse de que el comando `javac` esté disponible en la terminal
+como consigo los requisitos
+
 ### Compilación
 ```bash
 javac Main.java Parser/Parser.java Scanner/*.java
 ```
-
 ### Ejecución
 ```bash
 java Main
