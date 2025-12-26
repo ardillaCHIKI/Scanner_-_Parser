@@ -1,9 +1,7 @@
+package Scanner;
 import java.util.List;
 import java.util.Scanner;
 
-import Scanner.MiniScanner;
-import Scanner.Token;
-import Scanner.TipoToken;
 import Parser.Parser;
 
 public class Main {
