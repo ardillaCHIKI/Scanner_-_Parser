@@ -38,21 +38,5 @@ public class Main {
         
         input.close(); 
     }
-
-        //Token token; 
-        //while ((token = scanner.getNextToken()).tipo != TipoToken.EOF) { 
-            //System.out.println(token); } input.close();
-
-        //String[] lexemas = frase.trim().split("\\s+");
-        //Token[] tokens = new Token[lexemas.length];
-        //for (int i = 0; i < lexemas.length; i++) {
-            //TipoToken tipo = MiniLexer.clasificarToken(lexemas[i]);
-            //tokens[i] = new Token(tipo, lexemas[i]);
-        //}
-
-        //System.out.println("Tokens:");
-        //for (Token t : tokens) System.out.println(t);
-
-        //input.close();
     
 }

@@ -29,18 +29,4 @@ public MiniScanner(String frase) {
         return tokens; 
     }
 
-    //private String[] lexemas;
-    //private int indice = 0;
-
-    //public MiniScanner(String frase) {
-        //his.lexemas = frase.trim().split("\\s+");
-    ////public Token getNextToken() {
-        //if (indice >= lexemas.length) {
-            //return new Token(TipoToken.EOF, "");
-        //}
-
-        //String lexema = lexemas[indice++];
-        //TipoToken tipo = MiniLexer.clasificarToken(lexema);
-        //return new Token(tipo, lexema);
-    //}
 }
