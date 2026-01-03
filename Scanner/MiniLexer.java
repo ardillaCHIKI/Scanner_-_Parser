@@ -4,7 +4,7 @@ package Scanner;
 public class MiniLexer {
     public static TipoToken clasificarToken(String lexema) {
 
-        if (lexema.equals("if") || lexema.equals("int")) {
+        if (lexema.equals("if") || lexema.equals("int") || lexema.equals("print") ){
             return TipoToken.PALABRA_CLAVE;
         }
 
