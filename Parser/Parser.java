@@ -1,7 +1,5 @@
 package Parser;
 
-import javax.management.RuntimeErrorException;
-
 import Scanner.MiniScanner; 
 import Scanner.Token; 
 import Scanner.TipoToken;
@@ -9,9 +7,9 @@ import Semantic.SemanticAnalyzer;
 
 public class Parser {
 
-    private MiniScanner scanner; 
-    private Token actual;
-    private SemanticAnalyzer sem = new SemanticAnalyzer();
+    public MiniScanner scanner; 
+    public Token actual;
+    public SemanticAnalyzer sem = new SemanticAnalyzer();
 
     public Parser(MiniScanner scanner) { 
         this.scanner = scanner; 
@@ -33,9 +31,7 @@ public class Parser {
         while (actual != null && actual.tipo != TipoToken.EOF) { 
             stmt(); 
         } 
-        System.out.println("✔ Análisis sintáctico y semántico completado"); 
-
-        sem.imprimirTablaSimbolos();
+        System.out.println("✔ Análisis sintáctico completado"); 
     }
 
     public void stmt() {

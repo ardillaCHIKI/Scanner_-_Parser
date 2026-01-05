@@ -5,29 +5,29 @@ import java.util.List;
 
 public class MiniScanner {
 
-private List<Token> tokens; 
-private int indice = 0; 
+    public List<Token> tokens; 
+    public int indice = 0; 
 
-public MiniScanner(String frase) { 
-    tokens = new ArrayList<>(); 
-    String[] lexemas = frase.trim().split("\\s+"); 
-    for (String lexema : lexemas) { 
-        TipoToken tipo = MiniLexer.clasificarToken(lexema); 
-        tokens.add(new Token(tipo, lexema)); 
-    } 
-    tokens.add(new Token(TipoToken.EOF, "")); 
-    } 
-    
-    public Token getNextToken() { 
-        if (indice < tokens.size()) { 
-            return tokens.get(indice++); 
+    public MiniScanner(String frase) { 
+        tokens = new ArrayList<>(); 
+        String[] lexemas = frase.trim().split("\\s+"); 
+        for (String lexema : lexemas) { 
+            TipoToken tipo = MiniLexer.clasificarToken(lexema); 
+            tokens.add(new Token(tipo, lexema)); 
         } 
-        return new Token(TipoToken.EOF, ""); 
-    } 
-    
-    public List<Token> getAllTokens() { 
-        return tokens; 
-    }
+        tokens.add(new Token(TipoToken.EOF, "")); 
+        } 
+        
+        public Token getNextToken() { 
+            if (indice < tokens.size()) { 
+                return tokens.get(indice++); 
+            } 
+            return new Token(TipoToken.EOF, ""); 
+        } 
+        
+        public List<Token> getAllTokens() { 
+            return tokens; 
+        }
 
     //private String[] lexemas;
     //private int indice = 0;

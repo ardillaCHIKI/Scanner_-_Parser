@@ -5,16 +5,16 @@ import Scanner.TipoToken;
 
 public class SemanticAnalyzer {
 
-    private String[] nombres = new String[50];
-    private String[] tipos = new String[50];
-    private boolean[] inicializada = new boolean[50];
-    private int contador = 0;
+    public String[] nombres = new String[50];
+    public String[] tipos = new String[50];
+    public boolean[] inicializada = new boolean[50];
+    public int contador = 0;
 
     // Registrar una declaración: int x;
     public void registrarDeclaracion(String nombre, String tipo) {
         if (buscarVariable(nombre) != -1) {
         throw new RuntimeException("Error semántico: variable '" + nombre + "' ya fue declarada");
-    }
+        }
         nombres[contador] = nombre;
         tipos[contador] = tipo;
         inicializada[contador] = false;
@@ -44,9 +44,7 @@ public class SemanticAnalyzer {
         // Verificar compatibilidad de tipos
         String tipoVariable = tipos[pos];
         if (valor.tipo != TipoToken.LITERAL_NUMERICO) {
-            if(valor.tipo != TipoToken.LITERAL_NUMERICO){
-                throw new RuntimeException("Error semántico: tipo de dato incompatible para la variable '" + nombre + "'");
-            }   
+            throw new RuntimeException("Error semántico: tipo incompatible para la variable '" + nombre + "'"); 
         }
 
         inicializada[pos] = true;
