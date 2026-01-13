@@ -16,7 +16,7 @@ public class MiniScanner {
             tokens.add(new Token(tipo, lexema)); 
         } 
         tokens.add(new Token(TipoToken.EOF, "")); 
-        } 
+    } 
         
         public Token getNextToken() { 
             if (indice < tokens.size()) { 

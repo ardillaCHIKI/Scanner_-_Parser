@@ -73,7 +73,7 @@ public class Parser {
         }
 
         // CASO 3: Uso de variable: print(x);
-        else if (actual.tipo == TipoToken.IDENTIFICADOR && actual.lexema.equals("print")) {
+        else if (actual.tipo == TipoToken.PALABRA_CLAVE && actual.lexema.equals("print")) {
             avanzar();
             consumir("(");
 
